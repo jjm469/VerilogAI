@@ -5,7 +5,7 @@ from github import Github
 # LOCAL PARAMETERS
 #========================================================================
 
-g = Github("")     # Create a PyGithub object with Github API token
+g = Github("")                                             # Create a PyGithub object with Github API token
 query = "language:verilog"                                 # Define the search query
 results = g.search_repositories(query)                     # Search for repositories matching the query
 MAX_FILES_PER_TEXT_FILE = 1000                             # Define the maximum number of files per text file

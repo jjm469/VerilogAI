@@ -6,7 +6,7 @@ import os
 #========================================================================
 
 MAX_TOKENS = 2000
-API_KEY = "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"
+API_KEY = ""
 TEMPERATURE = 0
 FOLDER = "finetune_verilog(davinci)"
 # OPENAI_MODEL = "gpt-3.5-turbo"

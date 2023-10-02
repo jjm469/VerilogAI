@@ -4,8 +4,9 @@ import os
 # LOCAL PARAMETERS
 #========================================================================
 
-MODULE_NAME_LIMIT = 25
+MODULE_NAME_LIMIT = 10
 FAILED_RETRIVALS = 0
+REMOVED_MODULES = 0
 INPUT_SET = 'dataset.txt'
 
 #========================================================================
@@ -28,6 +29,7 @@ for module in modules:
     name = module[module_index + len("module"):open_paren_index]
     name = name.replace("#", "")
     name = name.replace("/", "")
+    name = name.replace (" ", "")
 
     if(len(name) < MODULE_NAME_LIMIT):
         try:
@@ -40,3 +42,7 @@ for module in modules:
             print("Error rewriting module number: "+ str(FAILED_RETRIVALS))
     else:
         end_index = module.find('endmodule')
+        REMOVED_MODULES += 1 
+
+print('Number of failed retrivals = ' + str(FAILED_RETRIVALS))
+print('Number of modules removed because module name was too long = '+ str(REMOVED_MODULES))

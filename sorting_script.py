@@ -13,7 +13,7 @@ DUP_MODULES = []                                   # list to track duplicate mod
 REMOVED_DUPS = 0                                   # variable to track duplicates removed
 REMOVED_SkyWater = 0                               # variable to track SkyWater Modules removed 
 REMOVED_DEPENDENT = 0                              # variable to keep track of modules with external dependencies (I.e. they instanciate submodules)
-SPACE_LIMIT=50                                     # Threshold for what is deemed a dependency vs independent instances of '.' and '()' 
+SPACE_LIMIT = 70                                   # Threshold for what is deemed a dependency vs independent instances of '.' and '()' 
 VIOLATED_INDICES = []                              
 INPUT_SET = 'Verilog_bigquery_GitHub.csv'
 
@@ -58,8 +58,11 @@ with open(INPUT_SET, 'r', encoding='utf-8', errors='ignore') as file:
                             REMOVED_SkyWater += 1 
 
                         # Used to detect submodules. 
-                        if (VALID_MODULE):
+                        if(VALID_MODULE and CURR_MODULE.find('`include')):
+                            VALID_MODULE = False
+                            REMOVED_DEPENDENT += 1
 
+                        if (VALID_MODULE):
                             dot_list = []
                             close_bracket_list = []
 

@@ -2,6 +2,17 @@ import os
 import utils
 import shutil
 
+# Script to extract valid verilog modules from Huggingface repo. Verilog 
+# modules must comply with the following criteria:
+# - Must not be from Skywater PDK
+# - Must not contain instanciations of other modules 
+# - Must not be a duplicate
+# - Must contain an Always block
+# - Must contain all legal characters (for parsing)
+# Script outputs a log file that keeps track of removed modules as well as
+# the reason they were removed. Removed files stored in REMOVED_DIR and 
+# extracted, valid files stored in TARGET_DIR. 
+
 #========================================================================
 # LOCAL PARAMETERS
 #========================================================================
@@ -96,12 +107,13 @@ if os.path.exists("log.txt"):
 with open("log.txt", 'w') as log:
     log.write(str(INFRACTION_LIST))
     log.close()
+    
 print('Number of unique modules extracted:', NUM_FILES)
 print('Number of duplicate modules removed:', REMOVED_DUPS)
 print('Number of SkyWater modules removed:', REMOVED_SkyWater)
 print('Number of dependent modules removed:', REMOVED_DEPENDENT)
 print('Number of files containing multiple module declarations removed:', REMOVED_MULTIPLE)
-print(ERROR)
+print('Number of files containing MISC errors: ', ERROR)
 print('Number of total modules removed:', REMOVED_SkyWater + REMOVED_DUPS + REMOVED_DEPENDENT + REMOVED_MULTIPLE+ ERROR)
 
 

@@ -1,0 +1,17 @@
+Requirements: 
+- OpenAI API key
+- Download PyVerilog (https://github.com/PyHDI/Pyverilog)
+- Download CSV with Verilog (https://huggingface.co/datasets/shailja/Verilog_GitHub)
+- Recommended to use virtual env
+
+A quick outline of the script flow: 
+1.) Run csv_split.py to seperate verilog modules into individual files.
+2.) Run verilog_sort.py to extract valid verilog modules.
+3.) Run prompt_generator.py to add prompts to extracted verilog modules.
+
+TODO
+- Clean temp files
+- Parameterize level of description of prompt
+- Add options for more version of GPT for prompt generation
+- Run prompt_generator.py on verilog folder
+

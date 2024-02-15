@@ -2,6 +2,10 @@ import openai
 import os
 from utils import *
 
+# Uses openai API to open a verilog file, extract the code, and generate
+# a description of the provided code. It then takes the generated
+# description and appends it to the top of the file.
+
 #========================================================================
 # LOCAL PARAMETERS
 #========================================================================
@@ -12,12 +16,6 @@ TEMPERATURE = 0
 FOLDER = input("Enter a folder containing the Verilog files to be used: ")
 PROMPT = "I have supplied you with a block of Verilog code. Give an explanation of the expected behavior as well as any important design details. At the end of your explanation, be sure to provide the module name, the port list, as well as any parameters. Also, do not rewrite the supplied code in the description or give your own implementation of the supplied verilog code. It is extremely important you do not give an implementation of the described code or rewrite the provided code. The end result should have a description of the code as well as the module name, port list, and parameters."
 # SAMPLE_RESPONSE = "This Verilog code defines module named [MODULE NAME], which has [X NUMBER OF INPUT PORTS] including 4 single-bit data inputs, a, b, c, and d, and 2 single-bit select inputs, s0 and s1, and a single-bit output port, out, which represents the selected input. The assign statement inside the module assigns the selected input value to the out output based on the s0 and s1 input values. If s1 is 1, then the value of out is either c or d, depending on the value of s0, and if s1 is 0, then the value of out is either a or b, again depending on the value of s0. Finally, the out output is declared as a reg type. multiplexer(a, b, c, d, s0, s1, out);input a, b, c, d; input s0, s1; output out; reg out;"
-
-#========================================================================
-# Uses openai API to open a verilog file, extract the code, and generate
-# a description of the provided code. It then takes the generated
-# description and appends it to the top of the file.
-#========================================================================
 
 print("========================================================================")
 print("OpenAI Models")

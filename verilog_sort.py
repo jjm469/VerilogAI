@@ -105,7 +105,8 @@ if os.path.exists("log.txt"):
     os.remove("log.txt")
 
 with open("log.txt", 'w') as log:
-    log.write(str(INFRACTION_LIST))
+    for infraction in INFRACTION_LIST:
+        log.write(infraction + '\n')
     log.close()
     
 print('Number of unique modules extracted:', NUM_FILES)
@@ -115,6 +116,25 @@ print('Number of dependent modules removed:', REMOVED_DEPENDENT)
 print('Number of files containing multiple module declarations removed:', REMOVED_MULTIPLE)
 print('Number of files containing MISC errors: ', ERROR)
 print('Number of total modules removed:', REMOVED_SkyWater + REMOVED_DUPS + REMOVED_DEPENDENT + REMOVED_MULTIPLE+ ERROR)
+
+
+# Clean-up temp files
+
+if os.path.exists("ast.txt"):
+    os.remove("ast.txt")
+
+if os.path.exists("parser.out"):
+    os.remove("parser.out")
+
+if os.path.exists("parsetab.py"):
+    os.remove("parsetab.py")
+
+if os.path.exists("file_check.txt"):
+    os.remove("file_check.txt")
+
+
+
+
 
 
 

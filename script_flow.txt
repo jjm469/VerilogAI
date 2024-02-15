@@ -1,16 +1,47 @@
 Requirements: 
 - OpenAI API key
-- Download PyVerilog (https://github.com/PyHDI/Pyverilog)
 - Download CSV with Verilog (https://huggingface.co/datasets/shailja/Verilog_GitHub)
 - Recommended to use virtual env
 
+
+
+File Tree (simple):
+    TOP
+    |____ VerilogAI
+    |      |_________ csv_split.py
+    |      |_________ utils.py
+    |      |_________ prompt_gen.py
+    |      |_________ verilog_sort.py
+    |      |_________ huggingface csv (w/ verilog)  
+    |      |_________ SOURCE_DIR
+    |                    |_____________ verilog files
+    |____ Pyverilog
+           |_________ setup.py
+    
+*** After running verilog_sort.py for the first time, pyverilog generates some junk folders in top dir.
+
+
+
+Instructions:
+*** In some top level dir 
+1.) clone repo https://github.com/jjm469/VerilogAI.git or https://github.com/cornell-zhang/hw-chatbot (then checkout branch "verilog_sort-prompt_gen")
+2.) clone repo https://github.com/PyHDI/Pyverilog
+2.) Make and activate virtual env
+3.) execute the following: 
+    pip3 install jinja2 ply
+    python3 setup.py install
+    (If you are having trouble, visit above link for exact instructions on Pyverilog setup)
+
+
+
 A quick outline of the script flow: 
-1.) Run csv_split.py to seperate verilog modules into individual files.
-2.) Run verilog_sort.py to extract valid verilog modules.
+1.) Run csv_split.py to seperate verilog modules in huggingface csv into individual files.
+2.) Run verilog_sort.py to extract valid verilog modules from output dir created by prev script.
 3.) Run prompt_generator.py to add prompts to extracted verilog modules.
 
-TODO
-- Clean temp files
+
+
+TODO:
 - Parameterize level of description of prompt
 - Add options for more version of GPT for prompt generation
 - Run prompt_generator.py on verilog folder
